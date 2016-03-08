@@ -5,7 +5,7 @@ public class MainServeur {
 			System.exit(1);
 		}
 		try {
-			MultiServerHTTPsql ms = new MultiServerHTTPsql(Integer.parseInt(args[0]));
+			MultiServerHTTP ms = new MultiServerHTTP(Integer.parseInt(args[0]));
 			ms.lancer();
 		} catch(Exception e) {
 			e.printStackTrace();

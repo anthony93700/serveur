@@ -55,7 +55,7 @@ public class ServeOnesql extends Thread {
 		try {				
 			Process ps = Runtime.getRuntime().exec("./"+requete);
 			String line;
-			fluxLocal = new BufferedReader(new InputStreamReader(ps.getInputStream()));
+			//fluxLocal = new BufferedReader(new InputStreamReader(ps.getInputStream()));
 			Thread.sleep(1); // petite attente de remplissage de buffer
 
 			toClient.println("<BR>CGI demande : "+requete+" ; resultat :<BR>");

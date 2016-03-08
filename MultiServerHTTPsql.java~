@@ -13,7 +13,7 @@ public class MultiServerHTTPsql {
 		// attente connexion : bloquant, creation d'un clone du socket ss
 			Socket socket = ss.accept();
 			// cree un nouveau thread pour la nouvelle connexion.
-			ServeOnesql so = new ServeOnesql(socket);
+			ServeOne so = new ServeOnesql(socket);
 			so.start(); 
 		}
 	} 
