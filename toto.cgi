@@ -1,2 +1,5 @@
 #!/bin/sh -f
-xclock;
+for i in $@
+do
+  echo $i;
+done

@@ -24,6 +24,7 @@ public class ServeOnesql extends Thread {
 				// true : Enable auto-flush:
 		toClient = new PrintWriter(new BufferedWriter(new OutputStreamWriter(
 						 socket.getOutputStream())), true);
+		requete="";
 		}
  
 	void envoyerFluxLocal() throws Exception {
@@ -53,7 +54,7 @@ public class ServeOnesql extends Thread {
 	void appelCgi() {
 		System.out.println("Demande de cgi :"+requete);
 		try {				
-			Process ps = Runtime.getRuntime().exec("./"+requete);
+			Process ps = Runtime.getRuntime().exec("."+requete);
 			String line;
 			fluxLocal = new BufferedReader(new InputStreamReader(ps.getInputStream()));
 			Thread.sleep(1); // petite attente de remplissage de buffer
@@ -80,11 +81,17 @@ public class ServeOnesql extends Thread {
 			}
 			else if(str.substring(0,5).equals("GET /")){
 				System.out.println("est dans la méthode get");
+				
+				str = str.replace("?"," ");
+				str = str.replace("&"," ");
+				System.out.println(str);
 				String[] s=str.split(" ");
-				requete = s[1].substring(1);
-				if(requete.substring(requete.length()-3).equals("cgi")){
-				System.out.println("appelle dans la méthode cgi"+requete.substring(requete.length()-3));
-				appelCgi();
+				for(int i = 1;i<s.length;i++)
+				requete += s[i]+" ";
+				System.out.println(s[1]);
+				if(s[1].substring(s[1].length()-3).equals("cgi")){
+					System.out.println("appelle dans la méthode cgi"+requete.substring(requete.length()-3));
+					appelCgi();
 				}else{
 				
 				
